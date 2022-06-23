@@ -1,10 +1,8 @@
 package com.kyungmin.grademanagement.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -13,9 +11,14 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
+@Entity
+@Table(name = "course_info")
 public class Course { //과목 클래스
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; //DB에서 Course를 구분하기 위한 ID
 
     private int year; //수강년도
@@ -34,4 +37,13 @@ public class Course { //과목 클래스
     private int credit; //학점
 
     private String grade; //성적
+
+    public Course(int year, int semester, String subject, String curriculum, int credit, String grade) {
+        this.year = year;
+        this.semester = semester;
+        this.subject = subject;
+        this.curriculum = curriculum;
+        this.credit = credit;
+        this.grade = grade;
+    }
 }
