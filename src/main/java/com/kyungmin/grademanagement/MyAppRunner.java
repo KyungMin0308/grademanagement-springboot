@@ -74,7 +74,7 @@ public class MyAppRunner implements ApplicationRunner {
         Course course40 = new Course(2020, 2, "컴퓨터비전", "전공", 3, "A+");
         Course course41 = new Course(2020, 2, "고급모바일프로그래밍", "전공", 3, "A0");
         Course course42 = new Course(2020, 2, "웹프레임워크1", "전공", 3, "A+");
-        Course course43 = new Course(2020, 2, "디자인Thinking", "교양", 3, "B+");
+        Course course43 = new Course(2020, 2, "디자인Thinking", "교양", 3, "A+");
 
         //2021년도 1학기
         Course course44 = new Course(2021, 1, "정보보안", "전공", 3, "A+");
