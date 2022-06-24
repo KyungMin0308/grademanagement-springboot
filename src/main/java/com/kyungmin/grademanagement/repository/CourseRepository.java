@@ -20,4 +20,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 */
 public interface CourseRepository extends JpaRepository<Course, Integer> { //DAO 클래스
 
+    //과목명으로 조회
+    Course findBySubject(String subject);
 }
