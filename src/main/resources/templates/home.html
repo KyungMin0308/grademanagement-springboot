@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<h1>학점 조회 홈페이지</h1>
+<!-- th:href의 @{}는 Context Path를 자동으로 매핑해줌 -->
+<a th:href="@{/all_courses}">전체 학기 과목 조회</a>
+</body>
+</html>
