@@ -1,12 +1,82 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
+    <!-- Config -->
+    <div th:replace="/fragments/config.html :: configuration"></div>
 </head>
 <body>
-<h1>학점 조회 홈페이지</h1>
-<!-- th:href의 @{}는 Context Path를 자동으로 매핑해줌 -->
-<a th:href="@{/all_courses}">전체 학기 과목 조회</a>
+
+<!-- Navigator -->
+<div th:replace="/fragments/navigation.html :: navigation"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Grade Management</h1>
+                    <p class="lead text-white-50 mb-4">4학년 1학기까지 수강한 과목(성적)을 조회하는 웹프로그램입니다.<br>Spring MVC 구조와 MySQL을 활용하였으며,<br>웹페이지는 BootStrap을 활용하였습니다.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <a class="btn btn-outline-light btn-lg px-4" href="#features">MENU</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Features section-->
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                <h2 class="h4 fw-bolder">전체 학기 수강과목 조회</h2>
+                <p>지금까지 수강한 모든 과목 및 성적을 조회합니다.</p>
+                <a class="text-decoration-none" th:href="@{/all_courses}">
+                    조회하기
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection-fill"></i></div>
+                <h2 class="h4 fw-bolder">학기별 수강과목 조회</h2>
+                <p>각 학기별로 수강한 과목들의 총 학점을 확인할 수 있습니다. <br> 상세보기를 클릭하면 해당 학기의 성적과 평점을 조회할 수 있습니다.</p>
+                <a class="text-decoration-none" th:href="@{/semester_course}">
+                    조회하기
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-star"></i></div>
+                <h2 class="h4 fw-bolder">예비 수강 신청</h2>
+                <p>다음 학기에 수강할 과목을 작성하여 추가해 볼 수 있습니다.</p>
+                <a class="text-decoration-none" th:href="@{/enrol}">
+                    신청하기
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-star-fill"></i></div>
+                <h2 class="h4 fw-bolder">예비 수강 신청 조회</h2>
+                <p>예비 수강 신청 과목을 조회 및 삭제할 수 있습니다.</p>
+                <a class="text-decoration-none" th:href="@{/created}">
+                    조회하기
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="/fragments/footer :: footer"></footer>
+
 </body>
 </html>

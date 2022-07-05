@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>과목 조회</title>
+  <!-- Config -->
+  <div th:replace="/fragments/config.html :: configuration"></div>
 </head>
 <body>
-<h1>전체학기 과목 조회</h1>
-<div>
-  <table>
-    <thead>
-    <tr>
-      <td th:text="수강년도"></td>
-      <td th:text="학기"></td>
-      <td th:text="교과목명"></td>
-      <td th:text="교과구분"></td>
-      <td th:text="학점"></td>
-      <td th:text="성적"></td>
-    </tr>
-    </thead>
-    <tbody>
-      <!-- th:each는 for문과 같은 기능을 수행 -->
-      <tr th:each="course : ${courseList}">
-        <td th:text="${course.year}"></td>
-        <td th:text="${course.semester}"></td>
-        <td th:text="${course.subject}"></td>
-        <td th:text="${course.curriculum}"></td>
-        <td th:text="${course.credit}"></td>
-        <td th:text="${course.grade}"></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+
+<!-- Navigator -->
+<div th:replace="/fragments/navigation.html :: navigation"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+  <div class="container px-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-6">
+        <div class="text-center my-5">
+          <h1 class="display-5 fw-bolder text-white mb-2">전체 학기 수강과목 및 <br> 성적 조회</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Features section-->
+<section class="py-5 border-bottom" id="features">
+  <div class="container px-5 my-5">
+    <div class="row gx-5">
+      <table class="coursetable">
+        <thead>
+        <tr class="insideline">
+          <td th:text="수강년도" class="insideline"></td>
+          <td th:text="학기" class="insideline"></td>
+          <td th:text="교과목명" class="insideline"></td>
+          <td th:text="교과구분" class="insideline"></td>
+          <td th:text="학점" class="insideline"></td>
+          <td th:text="성적" class="insideline"></td>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="course : ${courseList}" class="insideline">
+            <td th:text="${course.year}" class="insideline"></td>
+            <td th:text="${course.semester}" class="insideline"></td>
+            <td th:text="${course.subject}" class="insideline"></td>
+            <td th:text="${course.curriculum}" class="insideline"></td>
+            <td th:text="${course.credit}" class="insideline"></td>
+            <td th:text="${course.grade}" class="insideline"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="/fragments/footer :: footer"></footer>
+
 </body>
 </html>
