@@ -45,6 +45,16 @@
             <td th:text="${course.credit}" class="insideline"></td>
             <td th:text="${course.grade}" class="insideline"></td>
           </tr>
+          <tr class="insideline">
+            <td th:text="총계" class="insideline"></td>
+            <td class="insideline"></td>
+            <td class="insideline"></td>
+            <td class="insideline"></td>
+            <!-- #aggregates.sum() : 배열이나 컬렉션에서 집계를 생성하기 위한 유틸리티 메서드 -->
+            <td th:text="${#aggregates.sum(courseList.![credit])}" class="insideline"></td>
+            <!-- thymeleaf에서 Java 함수를 사용하기 위한 방법으로 평균 평점을 구하는 함수를 호출 -->
+            <td th:text="${@courseUtil.getAvgGrade(courseList)}" class="insideline"></td>
+          </tr>
         </tbody>
       </table>
     </div>
