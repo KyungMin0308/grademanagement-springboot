@@ -1,10 +1,12 @@
 package com.kyungmin.grademanagement.service;
 
+import com.kyungmin.grademanagement.dto.YearAndSemesterProjection;
 import com.kyungmin.grademanagement.model.Course;
 import com.kyungmin.grademanagement.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Year;
 import java.util.List;
 
 @Service
@@ -28,6 +30,9 @@ public class CourseService {
     public List<Course> getAllCourse() {
         return courseRepository.findAll();
     }
+
+    //2)학기별 이수 학점 조회
+    public YearAndSemesterProjection getSemesterCourse(int year, int semester) { return courseRepository.findTotalCreditByYearAndSemester(year, semester); }
 
     //3. Update
     //1)과목명, 교과구분, 학점 수정
