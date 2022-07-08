@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Config -->
+    <div th:replace="/fragments/config.html :: configuration"></div>
+</head>
+<body>
+
+<!-- Navigator -->
+<div th:replace="/fragments/navigation.html :: navigation"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-5">
+                    <h1 class="display-5 fw-bolder text-white mb-2">학기별 이수 학점 조회</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Features section-->
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <table class="semestertable">
+                <thead>
+                <tr class="insideline">
+                    <td class="insideline">수강년도</td>
+                    <td class="insideline">학기</td>
+                    <td class="insideline">취득 학점</td>
+                    <td class="insideline">상세보기</td>
+                </tr>
+                </thead>
+                    <tr th:each="course : ${courseList}" class="insideline">
+                        <td th:text="${course.year}" class="insideline"></td>
+                        <td th:text="${course.semester}" class="insideline"></td>
+                        <td th:text="${course.credit}" class="insideline"></td>
+                        <td class="insideline">
+                            <a th:href="@{/courses_grade?year=${course.year}&semester=${course.semester}}">
+                                <i class="bi bi-collection"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="insideline">
+                        <td th:text="총계" class="insideline"></td>
+                        <td class="insideline"></td>
+                        <!-- #aggregates.sum() : 배열 또는 컬렉션에서 집계를 생성하기위한 유틸리티 메서드로
+                             여기서는 이수학점 총합을 계산하기 위해 사용 -->
+                        <td th:text="${#aggregates.sum(courseList.![credit])}" class="insideline"></td>
+                        <td class="insideline"></td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="/fragments/footer :: footer"></footer>
+
+</body>
+</html>
