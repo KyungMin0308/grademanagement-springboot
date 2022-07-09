@@ -31,8 +31,11 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    //2)학기별 이수 학점 조회
-    public YearAndSemesterProjection getSemesterCourse(int year, int semester) { return courseRepository.findTotalCreditByYearAndSemester(year, semester); }
+    //2)학기별 총 이수 학점 조회
+    public YearAndSemesterProjection getTotalCreditByYearAndSemester(int year, int semester) { return courseRepository.findTotalCreditByYearAndSemester(year, semester); }
+
+    //2-1)해당 학기 수강 과목 정보 조회
+    public List<Course> getCoursesByYearAndSemester(int year, int semester) { return courseRepository.findByYearAndSemester(year, semester); }
 
     //3. Update
     //1)과목명, 교과구분, 학점 수정

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,14 +37,14 @@ public class CourseController {
 
     //2. 학기별 이수 학점 조회
     @RequestMapping("/semester_course")
-    public String showSemesterCourse(Model model) {
+    public String showTotalCreditByYearAndSemester(Model model) {
         List<Course> courseList = new ArrayList<>();
 
         for(int i=0; i<year.length; i++) {
             for(int j=0; j<semester.length; j++) {
                 if(year[i] == 2021 && semester[j] == 2) break; //2021년 2학기 정보는 DB에 존재하지 않음
 
-                YearAndSemesterProjection ysp = courseService.getSemesterCourse(year[i], semester[j]); //학기별 이수 학점을 DB 쿼리를 통해 반환
+                YearAndSemesterProjection ysp = courseService.getTotalCreditByYearAndSemester(year[i], semester[j]); //학기별 이수 학점을 DB 쿼리를 통해 반환
                 courseList.add(Course.builder().year(ysp.getYear()).semester(ysp.getSemester()).credit(ysp.getCredit()).build()); //리스트에 추가
             }
         }
@@ -54,4 +55,15 @@ public class CourseController {
     }
 
     //2-1. 해당 학기 수강과목 및 성적 조회
+    @RequestMapping("/semester_grade")
+    public String showCoursesByYearAndSemester(@RequestParam("year") int year,
+                                               @RequestParam("semester") int semester,
+                                               Model model) {
+
+        List<Course> courseList = courseService.getCoursesByYearAndSemester(year, semester);
+
+        model.addAttribute("courseList", courseList);
+
+        return "semester_grade";
+    }
 }
