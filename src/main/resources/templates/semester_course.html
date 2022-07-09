@@ -40,7 +40,7 @@
                         <td th:text="${course.semester}" class="insideline"></td>
                         <td th:text="${course.credit}" class="insideline"></td>
                         <td class="insideline">
-                            <a th:href="@{/courses_grade?year=${course.year}&semester=${course.semester}}">
+                            <a th:href="@{/semester_grade(year=${course.year}, semester=${course.semester})}">
                                 <i class="bi bi-collection"></i>
                             </a>
                         </td>

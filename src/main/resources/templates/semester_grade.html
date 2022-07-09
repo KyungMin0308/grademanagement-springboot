@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<!-- Config -->
+<div th:replace="/fragments/config.html :: configuration"></div>
+</head>
+<body>
+
+<!-- Navigator -->
+<div th:replace="/fragments/navigation.html :: navigation"></div>
+
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div th:with="course=${courseList[0]}" class="text-center my-5">
+                    <!-- ${}로 표현되는 변수를 텍스트와 함께 사용할 때 앞뒤로 |를 사용해야 함 : |${course.year}년|} -->
+                    <h1 class="display-5 fw-bolder text-white mb-2" th:text="|${course.year}년 ${course.semester}학기|"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Features section-->
+<section class="py-5 border-bottom" id="features">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <table class="coursetable">
+                <thead>
+                <tr class="insideline">
+                    <td th:text="수강년도" class="insideline"></td>
+                    <td th:text="학기" class="insideline"></td>
+                    <td th:text="교과목명" class="insideline"></td>
+                    <td th:text="교과구분" class="insideline"></td>
+                    <td th:text="학점" class="insideline"></td>
+                    <td th:text="성적" class="insideline"></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="course : ${courseList}" class="insideline">
+                    <td th:text="${course.year}" class="insideline"></td>
+                    <td th:text="${course.semester}" class="insideline"></td>
+                    <td th:text="${course.subject}" class="insideline"></td>
+                    <td th:text="${course.curriculum}" class="insideline"></td>
+                    <td th:text="${course.credit}" class="insideline"></td>
+                    <td th:text="${course.grade}" class="insideline"></td>
+                </tr>
+                <tr class="insideline">
+                    <td th:text="총계" class="insideline"></td>
+                    <td class="insideline"></td>
+                    <td class="insideline"></td>
+                    <td class="insideline"></td>
+                    <!-- #aggregates.sum() : 배열이나 컬렉션에서 집계를 생성하기 위한 유틸리티 메서드 -->
+                    <td th:text="${#aggregates.sum(courseList.![credit])}" class="insideline"></td>
+                    <!-- thymeleaf에서 Java 함수를 사용하기 위한 방법으로 평균 평점을 구하는 함수를 호출 -->
+                    <td th:text="${@courseUtil.getAvgGrade(courseList)}" class="insideline"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer th:replace="/fragments/footer :: footer"></footer>
+
+</body>
+</html>
